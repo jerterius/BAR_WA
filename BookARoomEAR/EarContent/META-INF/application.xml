@@ -4,4 +4,10 @@
   <module>
     <ejb>BAR_EJBProject.jar</ejb>
   </module>
+  <module>
+    <web>
+      <web-uri>BAR_Client.war</web-uri>
+      <context-root>BAR_Client</context-root>
+    </web>
+  </module>
 </application>
