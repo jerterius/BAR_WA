@@ -1,6 +1,10 @@
 package group25.facade;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
+
+import group25.eao.customer.CustomerEAOLocal;
+import group25.ejb.Customer;
 
 /**
  * Session Bean implementation class Facade
@@ -8,11 +12,15 @@ import javax.ejb.Stateless;
 @Stateless
 public class Facade implements FacadeLocal {
 
-    /**
-     * Default constructor. 
-     */
+    @EJB
+    private CustomerEAOLocal customerEAO;
+    
     public Facade() {
         // TODO Auto-generated constructor stub
+    }
+    
+    public Customer findByCustomerEmail(String email) {
+    	return customerEAO.findByCustomerEmail(email);
     }
 
 }

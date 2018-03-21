@@ -20,7 +20,7 @@ public class Customer implements Serializable {
 	private String title;
 	private String address;
 	private String password;
-	private Set<Booking> bookings;
+	//private Set<Booking> bookings;
 	
 	@Id
 	@Column(name="CEmail")
@@ -77,6 +77,8 @@ public class Customer implements Serializable {
 		this.password = password;
 	}
 	
+	/*
+	
 	@OneToMany(mappedBy="customer", fetch=FetchType.EAGER)
 	public Set<Booking> getBookings() {
 		return bookings;
@@ -85,7 +87,7 @@ public class Customer implements Serializable {
 	public void setBookings(Set<Booking> bookings) {
 		this.bookings = bookings;
 	}
-    
+    */
     public Customer() {
         // TODO Auto-generated constructor stub
     }
