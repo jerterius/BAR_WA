@@ -1,11 +1,17 @@
 package group25.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import group25.ejb.Booking;
+import group25.facade.FacadeLocal;
 
 /**
  * Servlet implementation class BookingServlet
@@ -14,6 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 public class BookingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	@EJB
+	private FacadeLocal facade;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -27,6 +36,21 @@ public class BookingServlet extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
+		out.println("<!DOCTYPE html><html><head>");
+		out.println("<title>Lab1</title>");
+		out.println("<meta charset=\"ISO-8859-1\">");
+		out.println("</head><body>");
+		out.println("<h2>Booking</h2>");
+		Booking booking = facade.findByBookingId(7);
+		out.print("<p> BookingNumber: " + booking.getBookingNumber() + "</p>");
+		out.print("<p> Adress: " + booking.getAdress() + "</p>");
+		out.print("<p> RoomNumber: " + booking.getRoomNumber() + "</p>");
+		out.print("<p> Date: " + booking.getDate() + "</p>");
+		out.print("<p> Email: " + booking.getCustomer().getEmail() + "</p>");
+		
+		out.println("</body></html>");
+		
 	}
 
 }
