@@ -4,7 +4,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import group25.ejb.booking.Booking;
+import group25.ejb.Booking;
 
 /**
  * Session Bean implementation class BookingEAO

@@ -2,7 +2,7 @@ package group25.eao.booking;
 
 import javax.ejb.Local;
 
-import group25.ejb.booking.Booking;
+import group25.ejb.Booking;
 
 @Local
 public interface BookingEAOLocal {
