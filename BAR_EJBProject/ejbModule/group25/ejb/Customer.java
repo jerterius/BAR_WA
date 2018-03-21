@@ -1,6 +1,7 @@
-package group25.ejb.basic;
+package group25.ejb;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
