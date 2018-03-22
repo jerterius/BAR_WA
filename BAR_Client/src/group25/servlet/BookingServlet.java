@@ -63,7 +63,7 @@ public class BookingServlet extends HttpServlet {
 		outCustomer.println("<h2>Customer</h2>");
 		
 		
-		Customer customer = facade.findByCustomerEmail("test@testmail.com");
+		Customer customer = facade.findByCustomerEmail("tester@testmail.com");
 		
 		
 		outCustomer.print("<p> Title: " + customer.getTitle() + " ");
