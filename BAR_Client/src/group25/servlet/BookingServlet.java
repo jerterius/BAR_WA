@@ -44,7 +44,7 @@ public class BookingServlet extends HttpServlet {
 		
 		outCustomer.println("<DOCTYPE html><html><head>");
 		outCustomer.println("<title>Booking</title>");
-		outCustomer.println("meta charset=\"ISO-8859-1\">");
+		outCustomer.println("<meta charset=\"ISO-8859-1\">");
 		outCustomer.println("</head><body>");
 		
 		outCustomer.println("<h2>Customer</h2>");
@@ -53,12 +53,18 @@ public class BookingServlet extends HttpServlet {
 		Customer customer = facade.findByCustomerEmail("dennis@gmail.com");
 		
 		
-		outCustomer.print("<p>" + customer.getTitle() + " ");
-		outCustomer.print("<p>" + customer.getName() + " ");
-		outCustomer.print("<p>" + customer.getAddress() + " ");
-		outCustomer.print("<p>" + customer.getPhoneNbr() + " ");
-		outCustomer.print("<p>" + customer.getEmail() + " ");
-		outCustomer.print("<p>" + customer.getPassword() + " ");
+		outCustomer.print("<p> Title: " + customer.getTitle() + " ");
+		outCustomer.print("<p> Name: " + customer.getName() + " ");
+		outCustomer.print("<p> Address: " + customer.getAddress() + " ");
+		outCustomer.print("<p> Phone number: " + customer.getPhoneNbr() + " ");
+		outCustomer.print("<p> Email: " + customer.getEmail() + " ");
+		
+		outCustomer.print("<h2> Customers Bookings: </h2>");
+		for(Booking b: customer.getBookings()) {
+			outCustomer.print("<p>" + b.getBookingNumber() +" "+ b.getAdress()+" "+ b.getRoomNumber()+" "+ b.getDate());
+		}
+		
+		
 		
 		
 		outCustomer.println("</body></html>");
