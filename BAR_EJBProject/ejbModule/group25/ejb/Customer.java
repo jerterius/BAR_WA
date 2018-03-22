@@ -85,7 +85,7 @@ public class Customer implements Serializable {
 	public void setBookings(Set<Booking> bookings) {
 		this.bookings = bookings;
 	}
-    
+	
     public Customer() {
         // TODO Auto-generated constructor stub
     }

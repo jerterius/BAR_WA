@@ -1,6 +1,10 @@
 package group25.eao.customer;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import group25.ejb.Customer;
 
 /**
  * Session Bean implementation class CustomerEAO
@@ -8,11 +12,39 @@ import javax.ejb.Stateless;
 @Stateless
 public class CustomerEAO implements CustomerEAOLocal {
 
-    /**
-     * Default constructor. 
-     */
+    @PersistenceContext(unitName="LabEJBSql")
+    private EntityManager em;
+	
     public CustomerEAO() {
         // TODO Auto-generated constructor stub
     }
+
+	@Override
+	public Customer findByCustomerEmail(String email) {
+		return em.find(Customer.class, email);
+	}
+
+	@Override
+	public Customer createCustomer(Customer customer) {
+		em.persist(customer);
+		return customer;
+	}
+
+	@Override
+	public Customer updateCustomer(Customer customer) {
+		em.merge(customer);
+		return customer;
+	}
+
+	@Override
+	public void deleteCustomer(String email) {
+		Customer a = this.findByCustomerEmail(email);
+		if(a != null) {
+			em.remove(a);
+		}
+		
+	}
+    
+    
 
 }
