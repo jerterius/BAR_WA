@@ -45,12 +45,25 @@ public class BookingServlet extends HttpServlet {
 		outCustomer.println("<DOCTYPE html><html><head>");
 		outCustomer.println("<title>Booking</title>");
 		outCustomer.println("<meta charset=\"ISO-8859-1\">");
-		outCustomer.println("</head><body>");
+		outCustomer.println("</head><style>" + 
+				"table {" + 
+				"    font-family: arial, sans-serif;" + 
+				"    border-collapse: collapse;" + 
+				"    width: 100%;" + 
+				"}" + 
+				"td, th {" + 
+				"    border: 1px solid #dddddd;" + 
+				"    text-align: left;" + 
+				"    padding: 8px;" + 
+				"tr:nth-child(even) {" + 
+				"    background-color: #dddddd;" + 
+				"}" + 
+				"</style><body>");
 		
 		outCustomer.println("<h2>Customer</h2>");
 		
 		
-		Customer customer = facade.findByCustomerEmail("dennis@gmail.com");
+		Customer customer = facade.findByCustomerEmail("test@testmail.com");
 		
 		
 		outCustomer.print("<p> Title: " + customer.getTitle() + " ");
@@ -59,32 +72,27 @@ public class BookingServlet extends HttpServlet {
 		outCustomer.print("<p> Phone number: " + customer.getPhoneNbr() + " ");
 		outCustomer.print("<p> Email: " + customer.getEmail() + " ");
 		
-		outCustomer.print("<h2> Customers Bookings: </h2>");
+		outCustomer.print("<p><h2>Bookings</h2><table>" + 
+				"  <tr>" + 
+				"    <th>Booking Number</th>" + 
+				"    <th>Adress</th>" + 
+				"    <th>Room</th>" + 
+				"    <th>Date</th>" + 
+				"  </tr>");
+		
 		for(Booking b: customer.getBookings()) {
-			outCustomer.print("<p>" + b.getBookingNumber() +" "+ b.getAdress()+" "+ b.getRoomNumber()+" "+ b.getDate());
+			outCustomer.print(
+			"<tr>" + 
+							"<td>" + b.getBookingNumber() + "</td>" +
+							"<td>" + b.getAdress()+ "</td>" + 
+							"<td>" + b.getRoomNumber()+"</td>" + 
+							"<td>" + b.getDate() + "</td>" +
+			"</tr>");
 		}
-		
-		
 		
 		
 		outCustomer.println("</body></html>");
 
-		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE html><html><head>");
-		out.println("<title>Lab1</title>");
-		out.println("<meta charset=\"ISO-8859-1\">");
-		out.println("</head><body>");
-		out.println("<h2>Booking</h2>");
-		Booking booking = facade.findByBookingId(7);
-		out.print("<p> BookingNumber: " + booking.getBookingNumber() + "</p>");
-		out.print("<p> Adress: " + booking.getAdress() + "</p>");
-		out.print("<p> RoomNumber: " + booking.getRoomNumber() + "</p>");
-		out.print("<p> Date: " + booking.getDate() + "</p>");
-		out.print("<p> Email: " + booking.getCustomer().getEmail() + "</p>");
-		
-		out.println("</body></html>");
-		
 
 	}
 

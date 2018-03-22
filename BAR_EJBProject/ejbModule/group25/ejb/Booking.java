@@ -1,6 +1,7 @@
 package group25.ejb;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="Bookings")
@@ -20,7 +23,7 @@ public class Booking implements Serializable{
 	private long bookingNumber;
 	private String adress;
 	private String roomNumber;
-	private Timestamp date;
+	private Date date;
 	private Customer customer;
 	
 	@Id
@@ -48,10 +51,10 @@ public class Booking implements Serializable{
 	}
 
 	@Column(name="Date")
-	public Timestamp getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(Timestamp date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	
