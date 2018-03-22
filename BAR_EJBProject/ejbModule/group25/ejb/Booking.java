@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -19,7 +20,6 @@ public class Booking implements Serializable{
 	private long bookingNumber;
 	private String adress;
 	private String roomNumber;
-	private String email;
 	private Timestamp date;
 	private Customer customer;
 	
@@ -46,13 +46,7 @@ public class Booking implements Serializable{
 	public void setRoomNumber(String roomNumber) {
 		this.roomNumber = roomNumber;
 	}
-	@Column(name="CEmail")
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+
 	@Column(name="Date")
 	public Timestamp getDate() {
 		return date;
@@ -62,6 +56,7 @@ public class Booking implements Serializable{
 	}
 	
 	@ManyToOne
+	@JoinColumn(name="CEmail", referencedColumnName="CEmail")
 	public Customer getCustomer() {
 		return customer;
 	}
