@@ -8,5 +8,8 @@ import group25.ejb.Customer;
 public interface FacadeLocal {
 	
 	public Customer findByCustomerEmail(String email);
+	public Customer createCustomer(Customer customer);
+	public Customer updateCustomer(Customer customer);
+	public void deleteCustomer(String email);
 
 }

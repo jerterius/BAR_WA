@@ -18,9 +18,33 @@ public class CustomerEAO implements CustomerEAOLocal {
     public CustomerEAO() {
         // TODO Auto-generated constructor stub
     }
+
+	@Override
+	public Customer findByCustomerEmail(String email) {
+		return em.find(Customer.class, email);
+	}
+
+	@Override
+	public Customer createCustomer(Customer customer) {
+		em.persist(customer);
+		return customer;
+	}
+
+	@Override
+	public Customer updateCustomer(Customer customer) {
+		em.merge(customer);
+		return customer;
+	}
+
+	@Override
+	public void deleteCustomer(String email) {
+		Customer a = this.findByCustomerEmail(email);
+		if(a != null) {
+			em.remove(a);
+		}
+		
+	}
     
-    public Customer findByCustomerEmail(String email) {
-    	return em.find(Customer.class, email);
-    }
+    
 
 }

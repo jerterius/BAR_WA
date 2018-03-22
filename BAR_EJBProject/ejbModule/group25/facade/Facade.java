@@ -18,9 +18,28 @@ public class Facade implements FacadeLocal {
     public Facade() {
         // TODO Auto-generated constructor stub
     }
+
+	@Override
+	public Customer findByCustomerEmail(String email) {
+		return customerEAO.findByCustomerEmail(email);
+	}
+
+	@Override
+	public Customer createCustomer(Customer customer) {
+		return customerEAO.createCustomer(customer);
+	}
+
+	@Override
+	public Customer updateCustomer(Customer customer) {
+		return customerEAO.updateCustomer(customer);
+	}
+
+	@Override
+	public void deleteCustomer(String email) {
+		customerEAO.deleteCustomer(email);
+		
+	}
     
-    public Customer findByCustomerEmail(String email) {
-    	return customerEAO.findByCustomerEmail(email);
-    }
+    
 
 }
