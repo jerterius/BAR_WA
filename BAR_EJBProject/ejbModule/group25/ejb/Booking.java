@@ -20,7 +20,6 @@ public class Booking implements Serializable{
 	private long bookingNumber;
 	private String adress;
 	private String roomNumber;
-//	private String email;
 	private Timestamp date;
 	private Customer customer;
 	
@@ -47,13 +46,7 @@ public class Booking implements Serializable{
 	public void setRoomNumber(String roomNumber) {
 		this.roomNumber = roomNumber;
 	}
-//	@Column(name="CEmail")
-//	public String getEmail() {
-//		return email;
-//	}
-//	public void setEmail(String email) {
-//		this.email = email;
-//	}
+
 	@Column(name="Date")
 	public Timestamp getDate() {
 		return date;
