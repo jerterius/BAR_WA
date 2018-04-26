@@ -6,8 +6,8 @@
   </module>
   <module>
     <web>
-      <web-uri>BAR_Client.war</web-uri>
-      <context-root>BAR_Client</context-root>
+      <web-uri>Client.war</web-uri>
+      <context-root>Client</context-root>
     </web>
   </module>
 </application>

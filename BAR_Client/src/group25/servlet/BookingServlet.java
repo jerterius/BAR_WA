@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,63 +38,103 @@ public class BookingServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+//	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//
+//		
+//		PrintWriter outCustomer = response.getWriter();
+//		
+//		outCustomer.println("<!DOCTYPE html><html><head>");
+//		outCustomer.println("<title>Booking</title>");
+//		outCustomer.println("<meta charset=\"ISO-8859-1\">");
+//		outCustomer.println("</head><style>" + 
+//				"table {" + 
+//				"    font-family: arial, sans-serif;" + 
+//				"    border-collapse: collapse;" + 
+//				"    width: 100%;" + 
+//				"}" + 
+//				"td, th {" + 
+//				"    border: 1px solid #dddddd;" + 
+//				"    text-align: left;" + 
+//				"    padding: 8px;" + 
+//				"tr:nth-child(even) {" + 
+//				"    background-color: #dddddd;" + 
+//				"}" + 
+//				"</style><body>");
+//		
+//		outCustomer.println("<h2>Customer</h2>");
+//		
+//		
+//		Customer customer = facade.findByCustomerEmail("tester@testmail.com");
+//		
+//		
+//		outCustomer.print("<p> Title: " + customer.getTitle() + " ");
+//		outCustomer.print("<p> Name: " + customer.getName() + " ");
+//		outCustomer.print("<p> Address: " + customer.getAddress() + " ");
+//		outCustomer.print("<p> Phone number: " + customer.getPhoneNbr() + " ");
+//		outCustomer.print("<p> Email: " + customer.getEmail() + " ");
+//		
+//		outCustomer.print("<p><h2>Bookings</h2><table>" + 
+//				"  <tr>" + 
+//				"    <th>Booking Number</th>" + 
+//				"    <th>Adress</th>" + 
+//				"    <th>Room asasdasd</th>" + 
+//				"    <th>Date</th>" + 
+//				"  </tr>");
+//		
+//		for(Booking b: customer.getBookings()) {
+//			outCustomer.print(
+//			"<tr>" + 
+//							"<td>" + b.getBookingNumber() + "</td>" +
+//							"<td>" + b.getAdress()+ "</td>" + 
+//							"<td>" + b.getRoomNumber()+"</td>" + 
+//							"<td>" + b.getDate() + "</td>" +
+//			"</tr>");
+//		}
+//		
+//		
+//		outCustomer.println("</body></html>");
+//
+//
+//	}
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		String url = null;
+		boolean ajax = false;
 		
-		PrintWriter outCustomer = response.getWriter();
+		response.setContentType("text/plain); charset=ISO8859-1");
+		PrintWriter out = response.getWriter();
+		String operation = request.getParameter("operation");
 		
-		outCustomer.println("<DOCTYPE html><html><head>");
-		outCustomer.println("<title>Booking</title>");
-		outCustomer.println("<meta charset=\"ISO-8859-1\">");
-		outCustomer.println("</head><style>" + 
-				"table {" + 
-				"    font-family: arial, sans-serif;" + 
-				"    border-collapse: collapse;" + 
-				"    width: 100%;" + 
-				"}" + 
-				"td, th {" + 
-				"    border: 1px solid #dddddd;" + 
-				"    text-align: left;" + 
-				"    padding: 8px;" + 
-				"tr:nth-child(even) {" + 
-				"    background-color: #dddddd;" + 
-				"}" + 
-				"</style><body>");
+		if(operation.equals("ajax_findCustomer")) {
+			String email = request.getParameter("userEmail");
+			String password = request.getParameter("userPassword");
+			
+			Customer customer = facade.findByCustomerEmail(email);
+			
+			if(customer.getPassword().equals(password)) {
+				out.print("Good job!");
+				
+				out.close();
+				ajax = true;
+				
+			} else {
+				out.print("No joy!");
+			}
+			
 		
-		outCustomer.println("<h2>Customer</h2>");
-		
-		
-		Customer customer = facade.findByCustomerEmail("tester@testmail.com");
-		
-		
-		outCustomer.print("<p> Title: " + customer.getTitle() + " ");
-		outCustomer.print("<p> Name: " + customer.getName() + " ");
-		outCustomer.print("<p> Address: " + customer.getAddress() + " ");
-		outCustomer.print("<p> Phone number: " + customer.getPhoneNbr() + " ");
-		outCustomer.print("<p> Email: " + customer.getEmail() + " ");
-		
-		outCustomer.print("<p><h2>Bookings</h2><table>" + 
-				"  <tr>" + 
-				"    <th>Booking Number</th>" + 
-				"    <th>Adress</th>" + 
-				"    <th>Room</th>" + 
-				"    <th>Date</th>" + 
-				"  </tr>");
-		
-		for(Booking b: customer.getBookings()) {
-			outCustomer.print(
-			"<tr>" + 
-							"<td>" + b.getBookingNumber() + "</td>" +
-							"<td>" + b.getAdress()+ "</td>" + 
-							"<td>" + b.getRoomNumber()+"</td>" + 
-							"<td>" + b.getDate() + "</td>" +
-			"</tr>");
+			
+			if (!ajax) {
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+				dispatcher.forward(request, response);
+				}
 		}
 		
-		
-		outCustomer.println("</body></html>");
-
-
+		doGet(request, response);
 	}
 
 }
