@@ -25,8 +25,8 @@ $(document).ready(function(){
 				email: email,
 				password: password},
 			url: 'AjaxServlet',
-			success: function(result){
-			 $("#result1").html(result);
+			success: function(data){
+			 $("#result1").html(data);
 			 
 			},
 		   	error: function(jqXHR, status, error) {
