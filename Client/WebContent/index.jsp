@@ -14,7 +14,7 @@
 <script type="text/javascript" src="vendor/jquery/jquery.js"></script>
 <script type="text/javascript">
 
-$(document).ready(function(){
+/* $(document).ready(function(){
 	$('#login_button').click(function(){
 		var email = $('#useremail').val();
 		var password = $('#userpassword').val();
@@ -40,13 +40,10 @@ $(document).ready(function(){
 		
 	});
 	
-});
+}); */
 
 
 //SPACE FOR SCRIPTS
-
-
-
 
 </script>
 
@@ -92,11 +89,30 @@ $(document).ready(function(){
 					<li class="nav-item"><a class="nav-link" href="#">Contact</a>
 					</li>
 
+				<%
 
-					<li class="nav-item"><a class="nav-link" href="#myModal"
-						data-toggle="modal"><i
-							class="fas fa-user"></i></a></li>
-							
+String loginButtonAttributes;
+if(session.getAttribute("currentSessionUser")==null){
+	loginButtonAttributes = "class=\"nav-link\" href=\"#myModal\" data-toggle=\"modal\" style=\"color: grey;\"";
+	
+} else {
+	loginButtonAttributes = "class=\"nav-link dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\" style=\"color: Chartreuse ;\"";
+	
+	
+	
+}
+
+%>
+				<li class="nav-item active dropdown"><a <%=loginButtonAttributes%>><i
+						class="fas fa-user"></i></a><span class="sr-only">(current)</span>
+
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="account.jsp"><i class="fas fa-user-circle"></i> Profile</a> <a
+							class="dropdown-item" href="bookings.jsp"><i class="fa fa-calendar-alt"></i> Bookings</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="logout.jsp"><i
+						class="fas fa-sign-out-alt"></i> Sign out</a>
+					</div></li>
 							
 
 
@@ -111,22 +127,25 @@ $(document).ready(function(){
   <div class="modal-dialog">
     <div class="col-lg-8 col-sm-8 col-12 main-section">
       <div class="modal-content">
+      <div class="col-lg-12 col-sm-12 col-12 login_close">
+      <button type="button" class="close" data-dismiss="modal">×</button>
+      </div>
         <div class="col-lg-12 col-sm-12 col-12 user-img">
           <i class="fas fa-user fa-5x fa-cog"></i>
         </div>
         <div class="col-lg-12 col-sm-12 col-12 user-name">
           <h1>User Login</h1>
-          <button type="button" class="close" data-dismiss="modal">×</button>
+          
         </div>
         <div class="col-lg-12 col-sm-12 col-12 form-input">
-          <form name='login_form' id="login_form">
+          <form action="AjaxController" method="post" name='login_form' id="login_form" style="margin: 10px;">
             <div class="form-group">
               <input type="email" class="form-control" placeholder="Enter email" name="useremail" id="useremail" required>
             </div>
             <div class="form-group">
               <input type="password" class="form-control" placeholder="Password" name="userpassword" id="userpassword" required>
             </div>
-            <input type="button" class="btn btn-success" name="login_button" id="login_button" value="Login">
+            <input type="submit" class="btn btn-success" name="login_button" id="login_button" value="Login">
           </form>
         </div>
         <div class="col-lg-12 col-sm-12 col-12 link-part">
@@ -216,13 +235,7 @@ Name <input type="text" id="fullname">
 	</section>
 
 	<!-- Footer -->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; Your
-				Website 2018</p>
-		</div>
-		<!-- /.container -->
-	</footer>
+	<jsp:include page="footer.jsp" />
 
 
 

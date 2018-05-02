@@ -6,6 +6,10 @@
 body{
 	font-family: 'Barlow Semi Condensed', sans-serif;
 }
+.login-close{
+	margin-top:10px;
+}
+
 .main-section{
 	margin: 0 auto;
 	margin-top:100px;
@@ -14,7 +18,7 @@ body{
 	padding: 0px;
 }
 .user-img{
-	margin-top:50px;
+	margin-top:10px;
 }
 .user-img img{
 	height: 100px;
