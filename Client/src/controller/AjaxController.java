@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import group25.ejb.Customer;
 import group25.facade.FacadeLocal;
@@ -45,9 +46,10 @@ public class AjaxController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		response.setContentType("text/plain");
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+		String email = request.getParameter("useremail");
+		String password = request.getParameter("userpassword");
 
 		Customer c = facade.findByCustomerEmail(email);
 		
@@ -55,6 +57,10 @@ public class AjaxController extends HttpServlet {
 		if(c!=null) {
 			if(c.getPassword().equals(password)) {
 				out.print("Welcome " + c.getName());
+				
+				HttpSession session = request.getSession(true);
+				session.setAttribute("currentSessionUser", c);
+				response.sendRedirect("account.jsp");
 			} else {
 				out.print("Invalid password");
 			}

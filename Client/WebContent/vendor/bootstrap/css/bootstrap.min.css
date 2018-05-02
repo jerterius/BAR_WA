@@ -2473,7 +2473,9 @@ px
 .valid-feedback {
 	display: none;
 	width: 100%;
-	margin-top: .25rem;
+	text-align:right;
+	padding-right: 1rem;
+	margin-top: -1.5rem;
 	font-size: 80%;
 	color: #28a745
 }
@@ -2940,14 +2942,14 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-info {
 	color: #fff;
-	background-color: #17a2b8;
-	border-color: #17a2b8
+	background-color: #00bff3;
+	border-color: #0c91b6
 }
 
 .btn-info:hover {
 	color: #fff;
-	background-color: #138496;
-	border-color: #117a8b
+	background-color: #238eab;
+	border-color: #0c91b6
 }
 
 .btn-info.focus, .btn-info:focus {
@@ -2956,8 +2958,8 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-info.disabled, .btn-info:disabled {
 	color: #fff;
-	background-color: #17a2b8;
-	border-color: #17a2b8
+	background-color: #00bff3;
+	border-color: #00bff3
 }
 
 .btn-info:not (:disabled ):not (.disabled ).active, .btn-info:not (:disabled
@@ -3624,10 +3626,10 @@ tbody.collapse.show {
 	padding: .25rem 1.5rem;
 	clear: both;
 	font-weight: 400;
-	color: #212529;
+	color: #000000;
 	text-align: inherit;
 	white-space: nowrap;
-	background-color: transparent;
+	background-color: #00bff3;
 	border: 0
 }
 
@@ -4130,7 +4132,8 @@ border-bottom-left-radius
 }
 
 .custom-control-label {
-	margin-bottom: 0
+	margin-bottom: 0;
+	font-weight: bold;
 }
 
 .custom-control-label::before {
@@ -4532,7 +4535,8 @@ none
 
 .navbar-nav .dropdown-menu {
 	position: static;
-	float: none
+	float: none;
+	background-color: #00bff3
 }
 
 .navbar-text {
@@ -7998,6 +8002,8 @@ supports ((position:-webkit-sticky ) or (position:sticky )){ .
 	clip-path: inset(50%);
 	border: 0
 }
+
+
 
 .sr-only-focusable:active, .sr-only-focusable:focus {
 	position: static;
