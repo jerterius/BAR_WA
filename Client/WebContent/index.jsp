@@ -1,3 +1,4 @@
+<%@page import="group25.ejb.Customer"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -70,7 +71,8 @@
 <body>
 
 	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-blue fixed-top">
+		<jsp:include page="navbar.jsp" />
+	<%-- <nav class="navbar navbar-expand-lg navbar-dark bg-blue fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="#"><img alt="BAR"
 				src="img/BAR_Logo.png" height="100" width="100"></a>
@@ -79,8 +81,8 @@
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav mr-auto">
+			<div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
+				<ul class="navbar-nav">
 					<li class="nav-item active"><a class="nav-link" href="#">Home
 							<span class="sr-only">(current)</span>
 					</a></li>
@@ -90,32 +92,39 @@
 					</li>
 
 				<%
-
+Customer c = (Customer)session.getAttribute("currentSessionUser");
 String loginButtonAttributes;
-if(session.getAttribute("currentSessionUser")==null){
-	loginButtonAttributes = "class=\"nav-link\" href=\"#myModal\" data-toggle=\"modal\" style=\"color: grey;\"";
+String loginLabel;
+String loggedInUser;
+if(c==null){
+	loginButtonAttributes = "class=\"nav-link\" href=\"#myModal\" data-toggle=\"modal\"";
+	loginLabel = " Login";
+	loggedInUser = "";
 	
 } else {
 	loginButtonAttributes = "class=\"nav-link dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\" style=\"color: Chartreuse ;\"";
-	
+	loginLabel = "";
+	loggedInUser = c.getName();
 	
 	
 }
 
 %>
-				<li class="nav-item active dropdown"><a <%=loginButtonAttributes%>><i
-						class="fas fa-user"></i></a><span class="sr-only">(current)</span>
+				<li class="nav-item dropdown"><a
+					<%=loginButtonAttributes%>><i class="fas fa-user"></i><%=loginLabel%></a><span
+					class="sr-only">(current)</span>
 
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="account.jsp"><i class="fas fa-user-circle"></i> Profile</a> <a
-							class="dropdown-item" href="bookings.jsp"><i class="fa fa-calendar-alt"></i> Bookings</a>
+						<a class="dropdown-item" href="account.jsp"><i
+							class="fas fa-user-circle"></i> Profile</a> <a class="dropdown-item"
+							href="bookings.jsp"><i class="fa fa-calendar-alt"></i>
+							Bookings</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="logout.jsp"><i
-						class="fas fa-sign-out-alt"></i> Sign out</a>
+							class="fas fa-sign-out-alt"></i> Sign out</a>
 					</div></li>
-							
-
-
+					
+					<li class="nav-item nav-link" style="color:Chartreuse; size:24px"><%=loggedInUser %></li>
 				</ul>
 
 
@@ -154,7 +163,7 @@ if(session.getAttribute("currentSessionUser")==null){
       </div>
     </div>
   </div>
-</div> 
+</div>  --%>
 
 
 	<header>
@@ -215,13 +224,15 @@ if(session.getAttribute("currentSessionUser")==null){
 		</form>
 			<h1>Half Slider by Start Bootstrap</h1>
 			<p>
-			<form>
-Name <input type="text" id="fullname">
-<input type="button" value="hello" id="bttHello">
-<br>
-<span id="result1"></span>
+			Lorem ipsum dolor sit amet, eam suas populo invenire at, eu tritani civibus qui. Homero moderatius duo ut. Ea has dolorem placerat constituam. Decore liberavisse te sit, ad pro noster animal persius, qui at tantas suscipit salutandi. Nonumy mentitum convenire eam in.
 
-</form>
+Eu quando legere gloriatur pro, ea laudem labitur saperet nec. Quando nonumy doctus ne sed, ad vim reque nonumes elaboraret. Noster fuisset fierent at mea, usu ad omittam corrumpit. Ex sea partem fabellas.
+
+Vel lucilius maiestatis ea, ex vim integre bonorum concludaturque, agam altera omittam mel at. Mea no elitr dolore laudem. Luptatum definitionem eos ut, vel esse similique in. Dicant splendide duo cu, nostrud deseruisse appellantur ad nam, has te oratio utamur. Legendos aliquando cu pro. Ius et doming explicari pertinacia.
+
+An labore aeterno his, has ad diam vero. Vitae numquam te mei, falli malorum est an. Est soleat libris bonorum et, magna dicat reprimique per ea. Nam ipsum melius laboramus ut, pro ut doctus scriptorem, ei tation antiopam consectetuer eum. Eu vix nullam option referrentur.
+
+Vix ex pertinax mediocritatem, quidam meliore ex vix. Est dicunt bonorum hendrerit eu, vis te iisque alienum gloriatur. Vitae comprehensam ne his, at eos sale dicunt suavitate. Porro dissentiet cum ut. Mei ne ludus nostro, nibh meliore eu vix. An possim abhorreant has, electram repudiandae delicatissimi quo in, sea solum quando et.
 			</p>
 			
 			<p>
