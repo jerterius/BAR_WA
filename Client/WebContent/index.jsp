@@ -250,8 +250,8 @@ $.sessionTimeout({
     keepAliveUrl: 'keep-alive.jsp',
     logoutUrl: 'logout.jsp',
     redirUrl: 'logout.jsp',
-    warnAfter: 10000, /* 54e4 */
-	redirAfter: 600000, /* 6e4 */
+    warnAfter: 54e4, /* 54e4 */
+	redirAfter: 6e4, /* 6e4 */
     countdownMessage: 'Redirecting in {timer} seconds.',
     countdownBar: true
 });
