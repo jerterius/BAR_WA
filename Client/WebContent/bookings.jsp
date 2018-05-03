@@ -16,22 +16,8 @@
 
 <title><%=c.getName()%>'s Account</title>
 
-<script type="text/javascript" src="vendor/jquery/jquery.js"></script>
-
-<!-- Bootstrap core CSS -->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
-
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-<!-- Session Timeout Warning-->
-<!-- <script src="js/jquery.userTimeout.min.js"></script>
- -->
-<script src="js/bootstrap-session-timeout.min.js"></script>
-
-
+<!-- Referenced CSS, JS and jQuery -->
+<jsp:include page="sources.jsp" />
 
 <script type="text/javascript">
 	$(window).load(function() {
@@ -40,13 +26,7 @@
 	});
 </script>
 
-<!-- Custom styles for this template -->
-<link href="css/half-slider.css" rel="stylesheet">
-<link href="css/modal-login.css" rel="stylesheet">
 
-<!-- Custom font -->
-<link href="fonts/web-fonts-with-css/css/fontawesome-all.css"
-	rel="stylesheet">
 </head>
 
 
@@ -86,7 +66,8 @@
 						%>
 
 
-						<tr>
+						<tr id="<%=b.getBookingNumber()%>">
+
 							<td><%=b.getBookingNumber()%></td>
 							<td><%=b.getAdress()%></td>
 							<td><%=b.getRoomNumber()%></td>
@@ -107,10 +88,10 @@
 			<div class="form-group row justify-content-end">
 				<div class="col-sm-3">
 					<input type="button" class="btn btn-success" value="Update"
-						id="editUserSubmit" name="editUserSubmit"> <input
+						id="editBookingsSubmit" name="editBookingsSubmit"> <input
 						type="button" class="btn btn-danger" value="Cancel"
-						id="undoEditUser" name="undoEditUser" data-toggle="collapse"
-						data-target="#editBookings">
+						id="undoEditBookings" name="undoEditBookings"
+						data-toggle="collapse" data-target="#editBookings">
 				</div>
 
 			</div>
@@ -136,14 +117,37 @@
 		});
 
 		var selectable = false;
-		$('#toggleEditBtn').click(function() {
-			if (!selectable) {
-				$('thead>tr').append('<th style="color:red;">Cancel</th>');
-				$('tbody>tr').append('<td><label class="checkbox-inline"><input type="checkbox" value=""></label></td>');
-				selectable = false;
-			}
+		$('#toggleEditBtn')
+				.click(
+						function() {
 
-		});
+							if (!selectable) {
+
+								$('thead>tr').prepend(
+										'<th style="color:red;" id="cancelColumn">Cancel</th>');
+								$('tbody>tr')
+										.prepend(
+												'<td><label class="checkbox-inline"><input type="checkbox" value=""></label></td>');
+
+								$('tbody>tr').each(
+										function(i) {
+
+											$('td:nth-child(1)', this).attr(
+													'id',
+													$('td:nth-child(2)', this)
+															.html());
+
+										})
+								selectable = true;
+							}
+
+						});
+
+		$('#undoEditBookings').click(function() {
+			selectable = false;
+			$('thead>tr').find('th:first').remove();
+			$('tbody>tr').find('td:first').remove();
+		})
 	</script>
 
 

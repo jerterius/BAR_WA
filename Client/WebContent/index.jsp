@@ -12,7 +12,6 @@
 
 <title>Book A Room</title>
 
-<script type="text/javascript" src="vendor/jquery/jquery.js"></script>
 <script type="text/javascript">
 
 /* $(document).ready(function(){
@@ -48,22 +47,20 @@
 
 </script>
 
-<!-- Bootstrap core CSS -->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Referenced CSS, JS and jQuery -->
+<jsp:include page="sources.jsp" />
 
-<!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
+<style>
+.sl1 {
+  background: url('slide5.png'); 
+  height: 500px;
+     width: _____;
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: cover;
+}
 
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-<!-- Custom styles for this template -->
-<link href="css/half-slider.css" rel="stylesheet">
-<link href="css/modal-login.css" rel="stylesheet">
-
-<!-- Custom font -->
-<link href="fonts/web-fonts-with-css/css/fontawesome-all.css"
-	rel="stylesheet">
-
+</style>
 
 
 </head>
@@ -177,8 +174,8 @@ if(c==null){
 			</ol>
 			<div class="carousel-inner" role="listbox">
 				<!-- Slide One - Set the background image for this slide in the line below -->
-				<div class="carousel-item active"
-					style="background-image: url('http://placehold.it/1900x1080')">
+				<div class="carousel-item active" style="background-image:url('img/carousel/slide1.jpeg')">
+				
 					<div class="carousel-caption d-none d-md-block">
 						<h3>First Slide</h3>
 						<p>This is a description for the first slide.</p>
@@ -186,7 +183,7 @@ if(c==null){
 				</div>
 				<!-- Slide Two - Set the background image for this slide in the line below -->
 				<div class="carousel-item"
-					style="background-image: url('http://placehold.it/1900x1080')">
+					style="background-image: url('img/carousel/slide2.jpeg')">
 					<div class="carousel-caption d-none d-md-block">
 						<h3>Second Slide</h3>
 						<p>This is a description for the second slide.</p>
@@ -194,7 +191,7 @@ if(c==null){
 				</div>
 				<!-- Slide Three - Set the background image for this slide in the line below -->
 				<div class="carousel-item"
-					style="background-image: url('http://placehold.it/1900x1080')">
+					style="background-image: url('img/carousel/slide3.jpeg')">
 					<div class="carousel-caption d-none d-md-block">
 						<h3>Third Slide</h3>
 						<p>This is a description for the third slide.</p>
@@ -248,7 +245,20 @@ Vix ex pertinax mediocritatem, quidam meliore ex vix. Est dicunt bonorum hendrer
 	<!-- Footer -->
 	<jsp:include page="footer.jsp" />
 
+<script>
+$.sessionTimeout({
+    keepAliveUrl: 'keep-alive.jsp',
+    logoutUrl: 'logout.jsp',
+    redirUrl: 'logout.jsp',
+    warnAfter: 10000, /* 54e4 */
+	redirAfter: 600000, /* 6e4 */
+    countdownMessage: 'Redirecting in {timer} seconds.',
+    countdownBar: true
+});
 
+
+
+</script>
 
 </body>
 

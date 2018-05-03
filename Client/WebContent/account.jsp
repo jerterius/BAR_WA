@@ -11,25 +11,14 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <%
-			Customer c = (Customer) session.getAttribute("currentSessionUser");
-		%>
+	Customer c = (Customer) session.getAttribute("currentSessionUser");
+%>
 
 <title><%=c.getName()%>'s Account</title>
 
-<script type="text/javascript" src="vendor/jquery/jquery.js"></script>
+<!-- Referenced CSS, JS and jQuery -->
+<jsp:include page="sources.jsp" />
 
-<!-- Bootstrap core CSS -->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
-
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-<!-- Session Timeout Warning-->
-<!-- <script src="js/jquery.userTimeout.min.js"></script>
- -->
-<script src="js/bootstrap-session-timeout.min.js"></script>
 
 
 
@@ -53,7 +42,7 @@ $('#editUserSubmit').click(function(){
 			operation: "updateCustomer",
 			nameInput: name,
 			addressInput: address,
-			phoneNoInput: phoneNo
+			phoneNoInput: phoneNo,
 			email: email,
 			password: password,
 			},
@@ -73,18 +62,12 @@ $('#editUserSubmit').click(function(){
 	
 });
 
-}); */
+}); 
 
 
 </script>
 
-<!-- Custom styles for this template -->
-<link href="css/half-slider.css" rel="stylesheet">
-<link href="css/modal-login.css" rel="stylesheet">
 
-<!-- Custom font -->
-<link href="fonts/web-fonts-with-css/css/fontawesome-all.css"
-	rel="stylesheet">
 </head>
 
 
@@ -233,8 +216,8 @@ $.sessionTimeout({
     keepAliveUrl: 'keep-alive.jsp',
     logoutUrl: 'logout.jsp',
     redirUrl: 'logout.jsp',
-    warnAfter: 54e4,
-	redirAfter: 6e4,
+    warnAfter: 10000, /* 54e4 */
+	redirAfter: 600000, /* 6e4 */
     countdownMessage: 'Redirecting in {timer} seconds.',
     countdownBar: true
 });
