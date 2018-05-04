@@ -46,27 +46,37 @@ public class AjaxController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String operation = request.getParameter("operation");
+		System.out.println("Operation" + operation);
 		
-		response.setContentType("text/plain");
-		String email = request.getParameter("useremail");
-		String password = request.getParameter("userpassword");
-
-		Customer c = facade.findByCustomerEmail(email);
 		
-		PrintWriter out = response.getWriter();
-		if(c!=null) {
-			if(c.getPassword().equals(password)) {
-				out.print("Welcome " + c.getName());
-				
-				HttpSession session = request.getSession(true);
-				session.setAttribute("currentSessionUser", c);
-				response.sendRedirect("account.jsp");
+		if(operation.equals("login")){
+		
+			
+			response.setContentType("text/plain");
+			PrintWriter out = response.getWriter();
+			String email = request.getParameter("email");
+			String password = request.getParameter("password");
+			
+			Customer c = facade.findByCustomerEmail(email);
+			
+			if(c!=null) {
+				if(c.getPassword().equals(password)) {
+					
+					HttpSession session = request.getSession(true);
+					session.setAttribute("currentSessionUser", c);
+					response.sendRedirect("account.jsp");
+				} else {
+					out.print("Password incorrect");
+				}
 			} else {
-				out.print("Invalid password");
+				out.print("Invalid user");
 			}
-		} else {
-			out.print("User does not exist.");
+			
+			
+			
 		}
+
 	}
 
 }

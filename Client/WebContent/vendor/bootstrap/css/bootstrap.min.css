@@ -2006,6 +2006,33 @@ pre code {
 	opacity: 1
 }
 
+/* invalid form placeholder */
+
+.form-control.is-invalid::-webkit-input-placeholder {
+	color: red;
+	opacity: 1
+}
+
+.form-control.is-invalid ::-moz-placeholder{
+	color: red;
+	opacity: 1
+}
+
+.form-control.is-invalid :-ms-input-placeholder {
+	color: red;
+	opacity: 1
+}
+
+.form-control.is-invalid ::-ms-input-placeholder {
+	color: red;
+	opacity: 1
+}
+
+.form-control.is-invalid ::placeholder {
+	color: red;
+	opacity: 1
+}
+
 .form-control:disabled, .form-control[readonly] {
 	background-color: #e9ecef;
 	opacity: 1
@@ -2474,10 +2501,12 @@ px
 	display: none;
 	width: 100%;
 	text-align:right;
-	padding-right: 1rem;
-	margin-top: -1.5rem;
+	padding-right: 4rem;
 	font-size: 80%;
-	color: #28a745
+	color: #28a745;
+	position: absolute;
+	top: 13px;
+	
 }
 
 .valid-tooltip {
@@ -2576,12 +2605,16 @@ px
 	box-shadow: 0 0 0 .2rem rgba(40, 167, 69, .25)
 }
 
+
 .invalid-feedback {
 	display: none;
 	width: 100%;
-	margin-top: .25rem;
+	text-align:right;
+	padding-right: 4rem;
 	font-size: 80%;
-	color: #dc3545
+	color: #dc3545;
+	position: absolute;
+	top: 13px;
 }
 
 .invalid-tooltip {

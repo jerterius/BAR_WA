@@ -1,6 +1,6 @@
 <%@page import="group25.ejb.Customer"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,8 +8,77 @@
 <title>Insert title here</title>
 
 <%
-			Customer c = (Customer) session.getAttribute("currentSessionUser");
-		%>
+	Customer c = (Customer) session.getAttribute("currentSessionUser");
+%>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#login_button').click(function(e) {
+			var userOperation = $('#userOperation').val();
+			var userEmail = $('#userEmail').val();
+			var userPassword = $('#userPassword').val();
+
+			$.ajax({
+				type : 'POST',
+				data : {
+					operation : userOperation,
+					email : userEmail,
+					password : userPassword
+				},
+				url : 'AjaxController',
+				success : function(data) {
+
+					switch (data) {
+					case "Password incorrect":
+						$("#userPassword").addClass('is-invalid');
+
+						break;
+					case "Invalid user":
+						$("#userEmail").addClass('is-invalid');
+
+						break;
+
+					default:
+						window.location.href = "account.jsp";
+					}
+
+				},
+				error : function(jqXHR, status, error) {
+					console.log(status + ": " + error);
+				}
+
+			});
+			e.preventDefault();
+		});
+
+	});
+
+	//SPACE FOR SCRIPTS
+</script>
+
+<style>
+.feedback-text {
+	position: relative;
+	top: 0rem;
+}
+
+.inputWithIcon input[type=email], .inputWithIcon input[type=password]{
+	padding-left: 40px;
+	
+}
+.inputWithIcon i{
+	position: absolute !important;
+	left: 26px;
+	top: 11.5px;
+	padding: 9.7px 9px;
+	background-color: #e4e8ec;
+	border-radius: 3px 0 0 3px;
+	color: #fff;
+	transition: 3s;
+	
+}
+</style>
 
 </head>
 <body>
@@ -23,7 +92,8 @@
 			aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
+		<div class="collapse navbar-collapse justify-content-end"
+			id="navbarResponsive">
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="index.jsp">Home
 				</a></li>
@@ -33,27 +103,24 @@
 
 
 
-						<%
-String loginButtonAttributes;
-String loginLabel;
-String loggedInUser;
-if(c==null){
-	loginButtonAttributes = "class=\"nav-link\" href=\"#myModal\" data-toggle=\"modal\"";
-	loginLabel = " Login";
-	loggedInUser = "";
-	
-} else {
-	loginButtonAttributes = "class=\"nav-link dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\" style=\"color: Chartreuse ;\"";
-	loginLabel = "";
-	loggedInUser = c.getName();
-	
-	
-}
+				<%
+					String loginButtonAttributes;
+					String loginLabel;
+					String loggedInUser;
+					if (c == null) {
+						loginButtonAttributes = "class=\"nav-link\" href=\"#myModal\" data-toggle=\"modal\"";
+						loginLabel = " Login";
+						loggedInUser = "";
 
-%>
-				<li class="nav-item dropdown"><a
-					<%=loginButtonAttributes%>><i class="fas fa-user"></i><%=loginLabel%></a><span
-					class="sr-only">(current)</span>
+					} else {
+						loginButtonAttributes = "class=\"nav-link dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\" style=\"color: Chartreuse ;\"";
+						loginLabel = "";
+						loggedInUser = c.getName();
+
+					}
+				%>
+				<li class="nav-item dropdown"><a <%=loginButtonAttributes%>><i
+						class="fas fa-user"></i><%=loginLabel%></a><span class="sr-only">(current)</span>
 
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="account.jsp"><i
@@ -64,9 +131,10 @@ if(c==null){
 						<a class="dropdown-item" href="logout.jsp"><i
 							class="fas fa-sign-out-alt"></i> Sign out</a>
 					</div></li>
-					
-					<li class="nav-item nav-link" style="color:Chartreuse; size:24px"><%=loggedInUser %></li>
-				</ul>
+
+				<li class="nav-item nav-link" style="color: Chartreuse; size: 24px"><%=loggedInUser%></li>
+
+			</ul>
 
 
 		</div>
@@ -88,20 +156,44 @@ if(c==null){
 
 					</div>
 					<div class="col-lg-12 col-sm-12 col-12 form-input">
-						<form action="AjaxController" method="post" name='login_form'
-							id="login_form" style="margin: 10px;">
+						<form name='login_form' id="login_form" method="post"
+							style="margin: 10px;">
 							<div class="form-group">
-								<input type="email" class="form-control"
-									placeholder="Enter email" name="useremail" id="useremail"
-									required>
+								<div class="inputWithIcon">
+									<input type="email" class="form-control"
+										placeholder="Enter email" name="userEmail" id="userEmail"
+										required> <i class="fas fa-at"></i>
+								</div>
+								<div class="valid-feedback feedback-icon">
+									<i class="fa fa-check"></i>
+								</div>
+								<div class="invalid-feedback feedback-icon">
+									<i class="fa fa-times"></i>
+								</div>
+								<div class="invalid-feedback feedback-text">User does not
+									exist!</div>
+
 							</div>
 							<div class="form-group">
+							<div class="inputWithIcon">
 								<input type="password" class="form-control"
-									placeholder="Password" name="userpassword" id="userpassword"
+									placeholder="Password" name="userPassword" id="userPassword"
 									required>
+									<i class="fas fa-key" style="top:65.5px"></i>
+								</div>
+								<div class="valid-feedback feedback-icon">
+									<i class="fa fa-check""></i>
+								</div>
+								<div class="invalid-feedback feedback-icon">
+									<i class="fa fa-times"></i>
+								</div>
+								<div class="invalid-feedback feedback-text">Password
+									incorrect!</div>
 							</div>
-							<input type="submit" class="btn btn-success" name="login_button"
-								id="login_button" value="Login">
+							<input type="hidden" name="userOperation" id="userOperation"
+								value="login"> <input type="button"
+								class="btn btn-success" name="login_button" id="login_button"
+								value="Login">
 						</form>
 					</div>
 					<div class="col-lg-12 col-sm-12 col-12 link-part">
@@ -112,6 +204,24 @@ if(c==null){
 			</div>
 		</div>
 	</div>
+	<script>
+		/* Fungerande validering men måste konfigureras */
+
+		/* 		var validation = true;
+		 $('input.form-control').bind('input', function() {
+		 var inputValue = $(this).val();
+
+		 if (inputValue.length > 5 && validation) {
+		 $(this).removeClass('is-invalid');
+		 $(this).addClass('is-valid');
+		 validation = false;
+		 } else {
+		 $(this).removeClass('is-valid');
+		 $(this).addClass('is-invalid');
+
+		 }
+		 }); */
+	</script>
 
 </body>
 </html>

@@ -111,7 +111,7 @@
 			logoutUrl : 'logout.jsp',
 			redirUrl : 'logout.jsp',
 			warnAfter : 54e4,
-			redirAfter : 6e4,
+			redirAfter : 6e5,
 			countdownMessage : 'Redirecting in {timer} seconds.',
 			countdownBar : true
 		});
