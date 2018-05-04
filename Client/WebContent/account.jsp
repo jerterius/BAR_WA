@@ -108,8 +108,16 @@ $('#editUserSubmit').click(function(){
 							<label for="nameInput" class="col-sm-2 control-label"
 								style="font-weight: bold">Name</label>
 							<div class="col-sm-10">
-								<input type="text" id="nameInput" class="form-control"
+								<input type="text" id="nameInput" class="form-control" placeholder="Enter name"
 									value="<%=c.getName()%>">
+									
+										<div class="valid-feedback feedback-icon">
+									<i class="fa fa-check"></i>
+								</div>
+								<div class="invalid-feedback feedback-icon">
+									<i class="fa fa-times"></i>
+								</div>
+								<div class="invalid-feedback feedback-text">Name must be at least 5 characters!</div>
 
 							</div>
 
@@ -121,7 +129,16 @@ $('#editUserSubmit').click(function(){
 							<div class="col-sm-10">
 								<input type="text" id="addressInput" class="form-control"
 									value="<%=c.getAddress()%>">
+									<div class="valid-feedback feedback-icon">
+									<i class="fa fa-check"></i>
+								</div>
+								<div class="invalid-feedback feedback-icon">
+									<i class="fa fa-times"></i>
+								</div>
+								<div class="invalid-feedback feedback-text">Name must be at least 5 characters!</div>
+								
 							</div>
+							
 
 
 						</div>
@@ -216,8 +233,8 @@ $.sessionTimeout({
     keepAliveUrl: 'keep-alive.jsp',
     logoutUrl: 'logout.jsp',
     redirUrl: 'logout.jsp',
-    warnAfter: 54e4, /* 54e4 */
-	redirAfter: 6e4, /* 6e4 */
+    warnAfter: 54e4,
+	redirAfter: 6e5,
     countdownMessage: 'Redirecting in {timer} seconds.',
     countdownBar: true
 });
@@ -235,18 +252,6 @@ $("#toggleEditBtn, #undoEditUser").click(function(){
 	
 });
 
-$('input').bind('input',function(){
-	var inputValue = $(this).val();
-	
-	
-	if(inputValue.length > 5){
-	/* 	$(this).html('<div class=\"valid-feedback feedback-icon\"><i class=\"fa fa-check\"></i></div>'); */
-		$(this).addClass('is-valid');
-	$(this).add
-	$(this).parent().append('<div class=\"valid-feedback feedback-icon\"><i class=\"fa fa-check\"></i></div><div class=\"invalid-feedback feedback-icon\"><i class=\"fa fa-times\"></i></div>');
-
-	}
-});
 
 (function() {
     'use strict';
@@ -262,6 +267,23 @@ $('input').bind('input',function(){
     }, false);
   })();
 
+
+/* Fungerande validering men måste konfigureras */
+
+	var validation = true;
+ $('#nameInput, #addressInput').bind('input', function() {
+ var inputValue = $(this).val();
+
+ if (inputValue.length > 5 && validation) {
+ $(this).removeClass('is-invalid');
+ $(this).addClass('is-valid');
+ validation = false;
+ } else {
+ $(this).removeClass('is-valid');
+ $(this).addClass('is-invalid');
+
+ }
+ }); 
 </script>
 
 
