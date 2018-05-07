@@ -63,14 +63,17 @@
 	top: 0rem;
 }
 
+.inputWithIcon{
+position:relative;}
+
 .inputWithIcon input[type=email], .inputWithIcon input[type=password]{
 	padding-left: 40px;
 	
 }
-.inputWithIcon i{
+.inputWithIcon i:not(.fa-times):not(.fa-check){
 	position: absolute !important;
-	left: 26px;
-	top: 11.5px;
+	left: 1px;
+	top: 1.5px;
 	padding: 9.7px 9px;
 	background-color: #e4e8ec;
 	border-radius: 3px 0 0 3px;
@@ -163,8 +166,7 @@
 									<input type="email" class="form-control"
 										placeholder="Enter email" name="userEmail" id="userEmail"
 										required> <i class="fas fa-at"></i>
-								</div>
-								<div class="valid-feedback feedback-icon">
+											<div class="valid-feedback feedback-icon">
 									<i class="fa fa-check"></i>
 								</div>
 								<div class="invalid-feedback feedback-icon">
@@ -172,6 +174,8 @@
 								</div>
 								<div class="invalid-feedback feedback-text">User does not
 									exist!</div>
+								</div>
+							
 
 							</div>
 							<div class="form-group">
@@ -179,9 +183,8 @@
 								<input type="password" class="form-control"
 									placeholder="Password" name="userPassword" id="userPassword"
 									required>
-									<i class="fas fa-key" style="top:65.5px"></i>
-								</div>
-								<div class="valid-feedback feedback-icon">
+									<i class="fas fa-key"></i>
+									<div class="valid-feedback feedback-icon">
 									<i class="fa fa-check""></i>
 								</div>
 								<div class="invalid-feedback feedback-icon">
@@ -189,6 +192,8 @@
 								</div>
 								<div class="invalid-feedback feedback-text">Password
 									incorrect!</div>
+								</div>
+								
 							</div>
 							<input type="hidden" name="userOperation" id="userOperation"
 								value="login"> <input type="button"
@@ -207,11 +212,10 @@
 	<script>
 		/* Fungerande validering men måste konfigureras */
 
-		/* 		var validation = true;
 		 $('input.form-control').bind('input', function() {
 		 var inputValue = $(this).val();
 
-		 if (inputValue.length > 5 && validation) {
+		 if (inputValue.length > 5) {
 		 $(this).removeClass('is-invalid');
 		 $(this).addClass('is-valid');
 		 validation = false;
@@ -220,7 +224,7 @@
 		 $(this).addClass('is-invalid');
 
 		 }
-		 }); */
+		 }); 
 	</script>
 
 </body>

@@ -2501,7 +2501,7 @@ px
 	display: none;
 	width: 100%;
 	text-align:right;
-	padding-right: 4rem;
+	padding-right: 15px;
 	font-size: 80%;
 	color: #28a745;
 	position: absolute;
@@ -2610,7 +2610,7 @@ px
 	display: none;
 	width: 100%;
 	text-align:right;
-	padding-right: 4rem;
+	padding-right: 15px;
 	font-size: 80%;
 	color: #dc3545;
 	position: absolute;
