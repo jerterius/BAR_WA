@@ -29,7 +29,7 @@ position:relative;}
 	position: absolute !important;
 	left: 1px;
 	top: 1.5px;
-	padding: 9.7px 9px;
+	padding: 9px 9px;
 	background-color: #e4e8ec;
 	border-radius: 3px 0 0 3px;
 	color: #fff;
@@ -120,34 +120,33 @@ position:relative;}
 									<input type="email" class="form-control"
 										placeholder="Enter email" name="userEmail" id="userEmail"
 										required> <i class="fas fa-at"></i>
-											<div class="valid-feedback feedback-icon">
-									<i class="fa fa-check"></i>
+									<div class="valid-feedback feedback-icon">
+										<i class="fa fa-check"></i>
+									</div>
+									<div class="invalid-feedback feedback-icon">
+										<i class="fa fa-times"></i>
+									</div>
+									<div class="invalid-feedback feedback-text" id="emailFeedback">User
+										does not exist!</div>
 								</div>
-								<div class="invalid-feedback feedback-icon">
-									<i class="fa fa-times"></i>
-								</div>
-								<div class="invalid-feedback feedback-text" id="emailFeedback">User does not
-									exist!</div>
-								</div>
-							
+
 
 							</div>
 							<div class="form-group">
-							<div class="inputWithIcon">
-								<input type="password" class="form-control"
-									placeholder="Password" name="userPassword" id="userPassword"
-									required>
-									<i class="fas fa-key"></i>
+								<div class="inputWithIcon">
+									<input type="password" class="form-control"
+										placeholder="Password" name="userPassword" id="userPassword"
+										required> <i class="fas fa-key"></i>
 									<div class="valid-feedback feedback-icon">
-									<i class="fa fa-check""></i>
+										<i class="fa fa-check""></i>
+									</div>
+									<div class="invalid-feedback feedback-icon">
+										<i class="fa fa-times"></i>
+									</div>
+									<div class="invalid-feedback feedback-text"
+										id="passwordFeedback">Password incorrect!</div>
 								</div>
-								<div class="invalid-feedback feedback-icon">
-									<i class="fa fa-times"></i>
-								</div>
-								<div class="invalid-feedback feedback-text" id="passwordFeedback">Password
-									incorrect!</div>
-								</div>
-								
+
 							</div>
 							<input type="hidden" name="userOperation" id="userOperation"
 								value="login"> <input type="button"
@@ -163,8 +162,8 @@ position:relative;}
 			</div>
 		</div>
 	</div>
-	
-	
+
+
 	<script type="text/javascript">
 	
 	$(document).ready(function() {
