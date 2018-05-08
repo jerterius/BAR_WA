@@ -56,7 +56,7 @@ position:relative;}
 				<li class="nav-item"><a class="nav-link" href="index.jsp">Home
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Test</a></li>
+				<li class="nav-item"><a class="nav-link" href="test.jsp">Test</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 
 
