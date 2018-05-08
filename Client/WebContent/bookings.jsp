@@ -22,18 +22,15 @@
 
 
 <style>
-
 .servlet-feedback {
 	display: block;
-	text-align:right;
+	text-align: right;
 	padding-right: 85px;
 	color: #28a745;
 	position: absolute;
 	font-weight: bold;
 	transition: 1s;
 }
-
-
 </style>
 
 </head>
@@ -89,47 +86,43 @@
 
 					</tbody>
 				</table>
-				<span class="feedback-text" name="servletFeedback" id="servletFeedback" style="font-weight: bold; color: #28a745;"></span>
+				<span class="feedback-text" name="servletFeedback"
+					id="servletFeedback" style="font-weight: bold; color: #28a745;"></span>
 				<div class="form-group row justify-content-end">
-				<div class="col-sm-3">
-				<input type="hidden" name="bookingOperation" id="bookingOperation" value="removeBookings">
+					<div class="col-sm-3">
+						<input type="hidden" name="bookingOperation" id="bookingOperation"
+							value="removeBookings">
+					</div>
+
+				</div>
+
+
 			</div>
-
-		</div>
-
-
-			</div>
-					<div id="editBookingsCardFooter" class="card-footer collapse">
-					<div class="form-group row justify-content-end">
+			<div id="editBookingsCardFooter" class="card-footer collapse">
+				<div class="form-group row justify-content-end">
 					<div class="col-sm-3">
 
-					<input type="button" class="btn btn-success" value="Update"
-						id="removeBookingSubmit" name="removeBookingSubmit"> <input
-						type="button" class="btn btn-danger" value="Cancel"
-						id="undoRemoveBooking" name="undoRemoveBooking"
-						data-toggle="collapse" data-target="#editBookingsCardFooter">
-						</div>
-						</div>
+						<input type="button" class="btn btn-success" value="Update"
+							id="removeBookingSubmit" name="removeBookingSubmit"> <input
+							type="button" class="btn btn-danger" value="Cancel"
+							id="undoRemoveBooking" name="undoRemoveBooking"
+							data-toggle="collapse" data-target="#editBookingsCardFooter">
+					</div>
 				</div>
+			</div>
 		</div>
 
 
 
 
 	</div>
-	
-	<span id="test"></span>
-	</section>
-	
-	
+
+
 	<!-- Footer -->
 	<jsp:include page="footer.jsp" />
 
 
 	<script type="text/javascript">
-
-	
-	
 		$(document).ready(function() {
 			$('#removeBookingSubmit').click(function(e) {
 				var userOperation = $('#bookingOperation').val();
@@ -156,11 +149,10 @@
 
 							}
 						});
-						
-						
+
 						$('#servletFeedback').addClass('servlet-feedback');
-						 $('#servletFeedback').html("Bookings removed!");
-						 $('#editBookingsCardFooter').removeClass('show');
+						$('#servletFeedback').html("Bookings removed!");
+						$('#editBookingsCardFooter').removeClass('show');
 
 					},
 					error : function(jqXHR, status, error) {

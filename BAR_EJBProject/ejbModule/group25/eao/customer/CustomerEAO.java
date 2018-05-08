@@ -38,9 +38,9 @@ public class CustomerEAO implements CustomerEAOLocal {
 
 	@Override
 	public void deleteCustomer(String email) {
-		Customer a = this.findByCustomerEmail(email);
-		if(a != null) {
-			em.remove(a);
+		Customer c = this.findByCustomerEmail(email);
+		if(c != null) {
+			em.remove(c);
 		}
 		
 	}

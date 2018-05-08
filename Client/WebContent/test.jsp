@@ -91,8 +91,8 @@
 
 								<select name="suite" class="form-control" size="2" multiple>
 									<option value="ics.junit.ejb.CustomerBeanTest">
-										ics.junit.ejb.CustomerBeanTest</option>
-									<option value="ics.junit…">ett.annat.TestCase</option>
+										Create &amp; Remove Customer</option>
+									<option value="ics.junit…">Undefined testcase</option>
 
 
 
@@ -100,7 +100,8 @@
 
 							</div>
 
-							<input type="submit" class="btn btn-success" value="Run" style="height: 38px;"/>
+							<input type="submit" class="btn btn-success" value="Run"
+								style="height: 38px;" />
 
 
 
@@ -128,27 +129,7 @@
 	<br>
 
 
-	<!-- 
-	<div id="editUser" class="collapse">
-		<div class="container">
-		<div class="card ">
-		
-			<div class="card-body">
-
-				<p class="card-text">
-	
-	Lorem ipsum dolor sit amet,
-		consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-		exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-
-
-	</div>
-	
-				</div>
-		</div>
-	</div> --> </section>
+	 </section>
 
 	<!-- Footer -->
 	<jsp:include page="footer.jsp" />
