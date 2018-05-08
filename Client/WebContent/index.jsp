@@ -104,19 +104,6 @@ Vix ex pertinax mediocritatem, quidam meliore ex vix. Est dicunt bonorum hendrer
 	<!-- Footer -->
 	<jsp:include page="footer.jsp" />
 
-<script>
-$.sessionTimeout({
-    keepAliveUrl: 'keep-alive.jsp',
-    logoutUrl: 'logout.jsp',
-    redirUrl: 'logout.jsp',
-    warnAfter: 54e4,
-	redirAfter: 6e5,
-    countdownMessage: 'Redirecting in {timer} seconds.',
-    countdownBar: true
-});
-
-
-</script>
 
 </body>
 

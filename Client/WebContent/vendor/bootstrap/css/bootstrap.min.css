@@ -341,7 +341,8 @@ progress {
 
 [type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button
 	{
-	height: auto
+	height: auto;
+	-webkit-user-select: none;
 }
 
 [type=search] {

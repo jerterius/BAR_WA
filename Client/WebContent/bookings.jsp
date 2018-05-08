@@ -1,5 +1,6 @@
 <%@page import="group25.ejb.Booking"%>
 <%@page import="group25.ejb.Customer"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -19,13 +20,21 @@
 <!-- Referenced CSS, JS and jQuery -->
 <jsp:include page="sources.jsp" />
 
-<script type="text/javascript">
-	$(window).load(function() {
-		sessionStorage.setItem('status', 'loggedIn');
 
-	});
-</script>
+<style>
 
+.servlet-feedback {
+	display: block;
+	text-align:right;
+	padding-right: 85px;
+	color: #28a745;
+	position: absolute;
+	font-weight: bold;
+	transition: 1s;
+}
+
+
+</style>
 
 </head>
 
@@ -47,7 +56,7 @@
 				<i class="fas fa-user-circle"></i> Bookings
 				<button type="button" class="btn btn-info" id="toggleEditBtn"
 					name="toggleEditBtn" data-toggle="collapse"
-					data-target="#editBookings" style="float: right">Edit</button>
+					data-target="#editBookingsCardFooter" style="float: right">Edit</button>
 			</div>
 			<div class="card-body">
 
@@ -80,40 +89,89 @@
 
 					</tbody>
 				</table>
+				<span class="feedback-text" name="servletFeedback" id="servletFeedback" style="font-weight: bold; color: #28a745;"></span>
+				<div class="form-group row justify-content-end">
+				<div class="col-sm-3">
+				<input type="hidden" name="bookingOperation" id="bookingOperation" value="removeBookings">
 			</div>
 
 		</div>
-		<div id="editBookings" class="card-footer collapse">
 
-			<div class="form-group row justify-content-end">
-				<div class="col-sm-3">
-					<input type="button" class="btn btn-success" value="Update"
-						id="editBookingsSubmit" name="editBookingsSubmit"> <input
-						type="button" class="btn btn-danger" value="Cancel"
-						id="undoEditBookings" name="undoEditBookings"
-						data-toggle="collapse" data-target="#editBookings">
-				</div>
 
 			</div>
+					<div id="editBookingsCardFooter" class="card-footer collapse">
+					<div class="form-group row justify-content-end">
+					<div class="col-sm-3">
+
+					<input type="button" class="btn btn-success" value="Update"
+						id="removeBookingSubmit" name="removeBookingSubmit"> <input
+						type="button" class="btn btn-danger" value="Cancel"
+						id="undoRemoveBooking" name="undoRemoveBooking"
+						data-toggle="collapse" data-target="#editBookingsCardFooter">
+						</div>
+						</div>
+				</div>
 		</div>
 
 
 
 
 	</div>
+	
+	<span id="test"></span>
 	</section>
-
+	
+	
+	<!-- Footer -->
 	<jsp:include page="footer.jsp" />
 
-	<script>
-		$.sessionTimeout({
-			keepAliveUrl : 'keep-alive.jsp',
-			logoutUrl : 'logout.jsp',
-			redirUrl : 'logout.jsp',
-			warnAfter : 54e4,
-			redirAfter : 6e5,
-			countdownMessage : 'Redirecting in {timer} seconds.',
-			countdownBar : true
+
+	<script type="text/javascript">
+
+	
+	
+		$(document).ready(function() {
+			$('#removeBookingSubmit').click(function(e) {
+				var userOperation = $('#bookingOperation').val();
+				var selectedBookings = new Array();
+
+				$("input[type=checkbox]:checked").each(function() {
+					selectedBookings.push($(this).val());
+				});
+
+				$.ajax({
+					type : 'POST',
+					data : {
+						operation : userOperation,
+						bookings : selectedBookings,
+					},
+					datatype : 'json',
+					url : 'AjaxController',
+					success : function(data) {
+
+						$('tbody>tr').each(function() {
+
+							if ($.inArray($(this).attr('id'), data) !== -1) {
+								this.remove();
+
+							}
+						});
+						
+						
+						$('#servletFeedback').addClass('servlet-feedback');
+						 $('#servletFeedback').html("Bookings removed!");
+						 $('#editBookingsCardFooter').removeClass('show');
+
+					},
+					error : function(jqXHR, status, error) {
+						console.log(status + ": " + error);
+					}
+
+				});
+				e.preventDefault();
+
+			});
+
 		});
 
 		var selectable = false;
@@ -123,8 +181,9 @@
 
 							if (!selectable) {
 
-								$('thead>tr').prepend(
-										'<th style="color:red;" id="cancelColumn">Cancel</th>');
+								$('thead>tr')
+										.prepend(
+												'<th style="color:red;" id="cancelColumn">Cancel</th>');
 								$('tbody>tr')
 										.prepend(
 												'<td><label class="checkbox-inline"><input type="checkbox" value=""></label></td>');
@@ -132,8 +191,9 @@
 								$('tbody>tr').each(
 										function(i) {
 
-											$('td:nth-child(1)', this).attr(
-													'id',
+											$('td>label>input:nth-child(1)',
+													this).attr(
+													'value',
 													$('td:nth-child(2)', this)
 															.html());
 
@@ -143,7 +203,7 @@
 
 						});
 
-		$('#undoEditBookings').click(function() {
+		$('#undoRemoveBooking').click(function() {
 			selectable = false;
 			$('thead>tr').find('th:first').remove();
 			$('tbody>tr').find('td:first').remove();
