@@ -55,9 +55,8 @@ position:relative;}
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="index.jsp">Home
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+				<li class="nav-item"><a class="nav-link" href="about.jsp">About</a></li>
 				<li class="nav-item"><a class="nav-link" href="test.jsp">Test</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 
 
 
@@ -246,7 +245,7 @@ position:relative;}
 								$('#userEmail').addClass('is-invalid');
 								$('#emailFeedback')
 										.html(
-												'Not a valid email address. Example: tester@testmail.com');
+												'Not a valid email address.');
 
 							}
 

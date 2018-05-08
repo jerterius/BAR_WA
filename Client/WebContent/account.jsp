@@ -140,9 +140,12 @@ input::-webkit-inner-spin-button {
 						</div>
 
 						<div class="form-group row">
+						
 							<label for="addressInput" class="col-sm-2 control-label"
 								style="font-weight: bold">Address</label>
+								
 							<div class="col-sm-10">
+							
 								<input type="text" id="addressInput" class="form-control"
 									value="<%=c.getAddress()%>" pattern=".{8,}">
 									<div class="valid-feedback feedback-icon">

@@ -49,22 +49,64 @@
 				<p>
 					Type in your TestCase or TestSuite<br>
 				</p>
-				<form action="TestServlet" method="get" name="youTypeItForm">
-					<input type="text" name="suite" size=60 value="" /> <input
-						type="submit" value="Run" />
-				</form>
+
+				<fieldset id="testFieldSet" name="testFieldSet">
+					<form action="TestServlet" method="get" name="youTypeItForm">
+
+
+						<div class="form-group row">
+
+							<div class="col-sm-5">
+								<input type="text" for="runButton"
+									class="form-control control-label" name="suite" size=60
+									value="" />
+
+
+							</div>
+
+							<input type="submit" class="btn btn-success" value="Run"
+								id="runButton" name="runButton" />
+
+
+						</div>
+
+
+
+
+					</form>
+				</fieldset>
 
 				<hr>
 				<p>
 					Select one of the following TestCases<br>
 				</p>
-				<form action="TestServlet" method="get" name="youPickItForm">
-					<select name="suite" size="2" multiple>
-						<option value="ics.junit.ejb.CustomerBeanTest">
-							ics.junit.ejb.CustomerBeanTest</option>
-						<option value="ics.junit…">ett.annat.TestCase</option>
-					</select> <input type="submit" value="Run" />
-				</form>
+
+				<fieldset id="testFieldSet" name="testFieldSet">
+
+					<form action="TestServlet" method="get" name="youPickItForm">
+
+						<div class="form-group row">
+
+							<div class="col-sm-5">
+
+								<select name="suite" class="form-control" size="2" multiple>
+									<option value="ics.junit.ejb.CustomerBeanTest">
+										ics.junit.ejb.CustomerBeanTest</option>
+									<option value="ics.junit…">ett.annat.TestCase</option>
+
+
+
+								</select>
+
+							</div>
+
+							<input type="submit" class="btn btn-success" value="Run" style="height: 38px;"/>
+
+
+
+						</div>
+					</form>
+				</fieldset>
 			</div>
 
 			<div id="editUser" class="card-footer collapse">

@@ -7,21 +7,30 @@
 <title>Insert title here</title>
 
 
+<style>
 
+/#pageFooter{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+
+</style>
 
 </head>
 <body>
 
 	<!-- Footer -->
-	<footer class="py-5 bg-dark">
+	<footer class="py-5 bg-dark" name="pageFooter" id="pageFooter">
 	<div class="container">
 
 		<p class="m-0 text-center text-white">Timeout in:
 			<span id="sessionCountdown" name="sessionCountdown"></span></p>
 
 
-		<p class="m-0 text-center text-white">Copyright &copy; Your
-			Website 2018</p>
+		<p class="m-0 text-center text-white">Copyright &copy; 
+			Book A Room 2018</p>
 	</div>
 	<!-- /.container --> </footer>
 
