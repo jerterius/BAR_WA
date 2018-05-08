@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 
 import javax.ejb.EJB;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import group25.ejb.Customer;
 import group25.facade.FacadeLocal;
 
+import com.google.gson.*;
 
 
 /**
@@ -47,14 +49,12 @@ public class AjaxController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String operation = request.getParameter("operation");
-		System.out.println("Operation" + operation);
 		
+		response.setContentType("text/plain");
+		PrintWriter out = response.getWriter();
 		
 		if(operation.equals("login")){
-		
 			
-			response.setContentType("text/plain");
-			PrintWriter out = response.getWriter();
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
 			
@@ -72,6 +72,53 @@ public class AjaxController extends HttpServlet {
 			} else {
 				out.print("Invalid user");
 			}
+			
+			
+		} else if(operation.equals("updateUser")) {
+			
+			HttpSession session = request.getSession(true);
+			
+			String newTitle = request.getParameter("titleInput");
+			String newName = request.getParameter("nameInput");
+			String newAddress = request.getParameter("addressInput");
+			String newPhoneNo = request.getParameter("phoneNoInput").toString();
+			String newEmail = request.getParameter("emailInput");
+			String newPassword = request.getParameter("passwordInput");
+		
+			
+			Customer originalCustomer = (Customer) session.getAttribute("currentSessionUser");
+			originalCustomer = facade.findByCustomerEmail(originalCustomer.getEmail());
+			
+			originalCustomer.setTitle(newTitle);
+			originalCustomer.setName(newName);
+			originalCustomer.setAddress(newAddress);
+			originalCustomer.setPhoneNbr(newPhoneNo);
+			originalCustomer.setEmail(newEmail);
+			originalCustomer.setPassword(newPassword);
+			
+			Customer updatedCustomer = facade.updateCustomer(originalCustomer);
+			
+			session.setAttribute("currentSessionUser", updatedCustomer);
+			
+			out.print("Success!");
+			
+			
+		} else if(operation.equals("removeBookings")) {	
+			HttpSession session = request.getSession(true);
+			Customer loggedInCustomer = (Customer) session.getAttribute("currentSessionUser");
+			
+			String[] bookingNumbers = request.getParameterValues("bookings[]");
+			
+			for(String b:bookingNumbers) {
+				
+				long bookingNo = Long.parseLong(b);
+				facade.deleteBooking(bookingNo);
+			}
+			response.setContentType("application/json");
+			new Gson().toJson(bookingNumbers, response.getWriter());
+			
+			Customer updatedCustomer = facade.findByCustomerEmail(loggedInCustomer.getEmail());
+			session.setAttribute("currentSessionUser", updatedCustomer);
 			
 			
 			

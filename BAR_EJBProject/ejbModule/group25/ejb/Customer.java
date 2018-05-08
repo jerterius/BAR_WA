@@ -22,6 +22,16 @@ public class Customer implements Serializable {
 	private String password;
 	private Set<Booking> bookings;
 	
+	public Customer(String email, String phoneNo, String name, String title, String address, String password) {
+		this.email = email;
+		this.phoneNbr = phoneNo;
+		this.name = name;
+		this.title = title;
+		this.address = address;
+		this.password = password;
+		
+	}
+	
 	@Id
 	@Column(name="CEmail")
 	public String getEmail() {

@@ -12,51 +12,6 @@
 %>
 
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#login_button').click(function(e) {
-			var userOperation = $('#userOperation').val();
-			var userEmail = $('#userEmail').val();
-			var userPassword = $('#userPassword').val();
-
-			$.ajax({
-				type : 'POST',
-				data : {
-					operation : userOperation,
-					email : userEmail,
-					password : userPassword
-				},
-				url : 'AjaxController',
-				success : function(data) {
-
-					switch (data) {
-					case "Password incorrect":
-						$("#userPassword").addClass('is-invalid');
-
-						break;
-					case "Invalid user":
-						$("#userEmail").addClass('is-invalid');
-
-						break;
-
-					default:
-						window.location.href = "account.jsp";
-					}
-
-				},
-				error : function(jqXHR, status, error) {
-					console.log(status + ": " + error);
-				}
-
-			});
-			e.preventDefault();
-		});
-
-	});
-
-	//SPACE FOR SCRIPTS
-</script>
-
 <style>
 .feedback-text {
 	position: relative;
@@ -100,9 +55,8 @@ position:relative;}
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="index.jsp">Home
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+				<li class="nav-item"><a class="nav-link" href="about.jsp">About</a></li>
 				<li class="nav-item"><a class="nav-link" href="test.jsp">Test</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 
 
 
@@ -172,7 +126,7 @@ position:relative;}
 								<div class="invalid-feedback feedback-icon">
 									<i class="fa fa-times"></i>
 								</div>
-								<div class="invalid-feedback feedback-text">User does not
+								<div class="invalid-feedback feedback-text" id="emailFeedback">User does not
 									exist!</div>
 								</div>
 							
@@ -190,7 +144,7 @@ position:relative;}
 								<div class="invalid-feedback feedback-icon">
 									<i class="fa fa-times"></i>
 								</div>
-								<div class="invalid-feedback feedback-text">Password
+								<div class="invalid-feedback feedback-text" id="passwordFeedback">Password
 									incorrect!</div>
 								</div>
 								
@@ -209,22 +163,122 @@ position:relative;}
 			</div>
 		</div>
 	</div>
-	<script>
-		/* Fungerande validering men måste konfigureras */
+	
+	
+	<script type="text/javascript">
+	
+	$(document).ready(function() {
+		$('#login_button').click(function(e) {
+			var userOperation = $('#userOperation').val();
+			var userEmail = $('#userEmail').val();
+			var userPassword = $('#userPassword').val();
 
-		 $('input.form-control').bind('input', function() {
-		 var inputValue = $(this).val();
+			if($('#login_form')[0].checkValidity()){
+			
+			$.ajax({
+				type : 'POST',
+				data : {
+					operation : userOperation,
+					email : userEmail,
+					password : userPassword
+				},
+				url : 'AjaxController',
+				success : function(data) {
 
-		 if (inputValue.length > 5) {
-		 $(this).removeClass('is-invalid');
-		 $(this).addClass('is-valid');
-		 validation = false;
-		 } else {
-		 $(this).removeClass('is-valid');
-		 $(this).addClass('is-invalid');
+					switch (data) {
+					case "Password incorrect":
+						$("#userPassword").addClass('is-invalid');
 
-		 }
-		 }); 
+						break;
+					case "Invalid user":
+						$("#userEmail").addClass('is-invalid');
+
+						break;
+
+					default:
+						window.location.href = "account.jsp";
+					}
+
+				},
+				error : function(jqXHR, status, error) {
+					console.log(status + ": " + error);
+				}
+
+			});
+			e.preventDefault();
+			
+		}else{
+			
+		console.log("Invalid form");
+		}
+		});
+
+	});
+
+	
+
+	function validateEmail(sEmail) {
+		var filter = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		if (filter.test(sEmail)) {
+		return true;
+		}
+		else {
+		return false;
+		}
+		};
+	
+
+
+		
+		$('#userEmail')
+				.bind(
+						'input',
+						function() {
+							var userEmail = $('#userEmail').val();
+
+							if (validateEmail(userEmail)) {
+								$('#userEmail').removeClass('is-invalid');
+								$('#userEmail').addClass('is-valid');
+
+							} else {
+								$('#userEmail').removeClass('is-valid');
+								$('#userEmail').addClass('is-invalid');
+								$('#emailFeedback')
+										.html(
+												'Not a valid email address.');
+
+							}
+
+						});
+		$('#userPassword').bind(
+				'input',
+				function() {
+					var userPassword = $('#userPassword').val();
+					if (userPassword.length > 3) {
+						$('#userPassword').removeClass('is-invalid');
+						$('#userPassword').addClass('is-valid');
+
+					} else {
+						$('#userPassword').removeClass('is-valid');
+						$('#userPassword').addClass('is-invalid');
+						$('#passwordFeedback').html(
+								'You must enter a password (min 4 letters)');
+
+					}
+
+				});
+		
+		$.sessionTimeout({
+		    keepAliveUrl: 'keep-alive.jsp',
+		    logoutUrl: 'logout.jsp',
+		    redirUrl: 'logout.jsp',
+		    warnAfter: 54e4,
+			redirAfter: 6e5,
+		    countdownMessage: 'Redirecting in {timer} seconds.',
+		    countdownBar: true
+		});
+		
+		
 	</script>
 
 </body>

@@ -341,7 +341,8 @@ progress {
 
 [type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button
 	{
-	height: auto
+	height: auto;
+	-webkit-user-select: none;
 }
 
 [type=search] {
@@ -8314,7 +8315,7 @@ supports ((position:-webkit-sticky ) or (position:sticky )){ .
 }
 
 .pt-5, .py-5 {
-	padding-top: 3rem !important
+	padding-top: 3rem !important;
 }
 
 .pr-5, .px-5 {
@@ -8322,12 +8323,17 @@ supports ((position:-webkit-sticky ) or (position:sticky )){ .
 }
 
 .pb-5, .py-5 {
-	padding-bottom: 3rem !important
+	padding-bottom: 3rem !important;
+}
+
+section.py-5{
+	height: -webkit-fill-available;
 }
 
 .pl-5, .px-5 {
 	padding-left: 3rem !important
 }
+
 
 .m-auto {
 	margin: auto !important
