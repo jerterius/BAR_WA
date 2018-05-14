@@ -15,7 +15,7 @@
 	Customer c = (Customer) session.getAttribute("currentSessionUser");
 %>
 
-<title><%=c.getName()%>'s Account</title>
+<title><%=c.getName()%>'s Bookings</title>
 
 <!-- Referenced CSS, JS and jQuery -->
 <jsp:include page="sources.jsp" />
@@ -50,7 +50,7 @@
 
 		<div class="card">
 			<div class="card-header" style="font-size: 24px">
-				<i class="fas fa-user-circle"></i> Bookings
+				<i class="fa fa-calendar-alt"></i> Bookings
 				<button type="button" class="btn btn-info" id="toggleEditBtn"
 					name="toggleEditBtn" data-toggle="collapse"
 					data-target="#editBookingsCardFooter" style="float: right">Edit</button>

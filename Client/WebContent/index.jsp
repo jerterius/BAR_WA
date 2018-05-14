@@ -81,36 +81,11 @@
 
 		<h1>Welcome to Book A Room</h1>
 		<br>
-		<p>Lorem ipsum dolor sit amet, eam suas populo invenire at, eu
-			tritani civibus qui. Homero moderatius duo ut. Ea has dolorem
-			placerat constituam. Decore liberavisse te sit, ad pro noster animal
-			persius, qui at tantas suscipit salutandi. Nonumy mentitum convenire
-			eam in. Eu quando legere gloriatur pro, ea laudem labitur saperet
-			nec. Quando nonumy doctus ne sed, ad vim reque nonumes elaboraret.
-			Noster fuisset fierent at mea, usu ad omittam corrumpit. Ex sea
-			partem fabellas. Vel lucilius maiestatis ea, ex vim integre bonorum
-			concludaturque, agam altera omittam mel at. Mea no elitr dolore
-			laudem. Luptatum definitionem eos ut, vel esse similique in. Dicant
-			splendide duo cu, nostrud deseruisse appellantur ad nam, has te
-			oratio utamur. Legendos aliquando cu pro. Ius et doming explicari
-			pertinacia. An labore aeterno his, has ad diam vero. Vitae numquam te
-			mei, falli malorum est an. Est soleat libris bonorum et, magna dicat
-			reprimique per ea. Nam ipsum melius laboramus ut, pro ut doctus
-			scriptorem, ei tation antiopam consectetuer eum. Eu vix nullam option
-			referrentur. Vix ex pertinax mediocritatem, quidam meliore ex vix.
-			Est dicunt bonorum hendrerit eu, vis te iisque alienum gloriatur.
-			Vitae comprehensam ne his, at eos sale dicunt suavitate. Porro
-			dissentiet cum ut. Mei ne ludus nostro, nibh meliore eu vix. An
-			possim abhorreant has, electram repudiandae delicatissimi quo in, sea
-			solum quando et.</p>
+		<p>This is a site where you can easily manage your account settings and bookings. 
+		Just tap the top right user icon and you are good to go. For booking adjustments, 
+		please contact your closest Book A Room service office.</p>
 
-		<p>
-			The background images for the slider are set directly in the HTML
-			using inline CSS. The rest of the styles for this template are
-			contained within the
-			<code>half-slider.css</code>
-			file.
-		</p>
+
 	</div>
 	</section>
 

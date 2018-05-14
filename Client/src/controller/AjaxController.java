@@ -70,7 +70,7 @@ public class AjaxController extends HttpServlet {
 					out.print("Password incorrect");
 				}
 			} else {
-				out.print("Invalid user");
+				out.print("User does not exist");
 			}
 			
 			
@@ -100,7 +100,7 @@ public class AjaxController extends HttpServlet {
 			
 			session.setAttribute("currentSessionUser", updatedCustomer);
 			
-			out.print("Success!");
+			out.print("Update successful!");
 			
 			
 		} else if(operation.equals("removeBookings")) {	

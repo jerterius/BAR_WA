@@ -199,7 +199,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 									<i class="fa fa-times"></i>
 								</div>
 								<div class="invalid-feedback feedback-text">Email must be
-									writtern e.g something@domain.com</div>
+									written e.g something@domain.com</div>
 							</div>
 
 
