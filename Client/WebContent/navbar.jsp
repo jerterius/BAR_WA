@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
 
 <%
 	Customer c = (Customer) session.getAttribute("currentSessionUser");
@@ -43,7 +42,7 @@ position:relative;}
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-blue fixed-top">
 	<div class="container">
-		<a class="navbar-brand" href="#"><img alt="BAR"
+		<a class="navbar-brand" href="index.jsp"><img alt="BAR"
 			src="img/BAR_Logo.png" height="100" width="100"></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -189,7 +188,7 @@ position:relative;}
 						$("#userPassword").addClass('is-invalid');
 
 						break;
-					case "Invalid user":
+					case "User does not exist":
 						$("#userEmail").addClass('is-invalid');
 
 						break;
